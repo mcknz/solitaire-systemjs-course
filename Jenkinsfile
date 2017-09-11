@@ -68,13 +68,15 @@ node {
 input 'Deploy to staging?'
 
 stage('Deploy') {
-    // write build number to index page
-    sh "echo '<h1>${env.BUILD_DISPLAY_NAME}</h1>' >> app/index.html"
+    node {
+        // write build number to index page
+        sh "echo '<h1>${env.BUILD_DISPLAY_NAME}</h1>' >> app/index.html"
     
-    // deploy to docker container
-    // sh 'docker compose up -d --build'
+        // deploy to docker container
+        // sh 'docker compose up -d --build'
     
-    notify 'Software deployed!'
+        notify 'Software deployed!'
+    }
 }
 
 
